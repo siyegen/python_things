@@ -43,6 +43,22 @@ class TestNWayMerge(unittest.TestCase):
         merged_array = merge_two(array_a, array_b)
         self.assertEquals(merged_array, expected, 'Array merged together')
 
+    def test_merge_two_both_empty(self):
+        array_a = []
+        array_b = []
+        # Merge a and b, result should be
+        expected = []
+        merged_array = merge_two(array_a, array_b)
+        self.assertEquals(merged_array, expected, 'Array merged together')
+
+    def test_merge_two_huge(self):
+        array_a = [10**100]
+        array_b = [1,2]
+        # Merge a and b, result should be
+        expected = [1,2,10**100, 10**200]
+        merged_array = merge_two(array_a, array_b)
+        self.assertEquals(merged_array, expected, 'Array merged together')
+
     def test_merge_three(self):
         array_a = [1,2,3]
         array_b = [4,5,6]
@@ -53,11 +69,12 @@ class TestNWayMerge(unittest.TestCase):
 
     def test_merge_four(self):
         array_a = [1,2]
-        array_b = [5,6]
-        array_c = [8,9]
+        array_b = [2,5,6]
+        array_c = [4,8,9]
         array_d = [11,12]
-        expected = [1,2,5,6,8,9,11,12]
+        expected = [1,2,2,4,5,6,8,9,11,12]
         merged_array = n_way_merge(array_a, array_b, array_c, array_d)
+        print 'moo', merged_array
         self.assertEquals(merged_array, expected, 'Array merged together')
 
     def test_merge_five(self):
